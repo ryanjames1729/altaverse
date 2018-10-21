@@ -1,5 +1,9 @@
 import time, sys, os
 from planet_beta98 import *
+from planet_example import *
+import planet_beta98
+import planet_example
+
 
 class Player:
     def __init__(self):
@@ -8,7 +12,6 @@ class Player:
         self.health = 100
         self.currentObjects = []
         self.money = 500.00
-
 
 player = Player()
 
@@ -19,12 +22,282 @@ def slowText(message):
 
 
 def travel(player, currentPlanet, direction):
+    distanceTraveled = 0
     if currentPlanet == "beta98":
-        if destinationPlanet == "north":
-            #slowText("\nAfter your trip you will have {}% fuel left.".format(player.fuel))
-            beta98_landed()
-    slowText("\n\nTravel is not working at this time.")
-    beta98_landed(player)
+        if direction == "north":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling North or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                    planet_beta98.beta98_landed(player)
+                else:
+                    repeat = True
+        elif direction == "south":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling South or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                            break
+                    planet_beta98.beta98_landed(player)
+                else:
+                    repeat = True
+        elif direction == "east":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling East or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                            break
+                    planet_beta98.beta98_landed(player)
+                else:
+                    repeat = True
+        elif direction == "west":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling West or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                            break
+                    planet_beta98.beta98_landed(player)
+                else:
+                    repeat = True
+        elif direction == "up":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if distanceTraveled >= 20:
+                    example_landed(player)
+                else:
+                    slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling Up or turn around? ")
+                    player.fuel -= 10
+                    choice = input(">").strip().lower()
+                    if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                        slowText("\nTurning around to travel back home.")
+                        while distanceTraveled > 0:
+                            distanceTraveled -= 10
+                            player.fuel -= 10
+                            if player.fuel <= 0:
+                                slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                                endGame()
+                        planet_beta98.beta98_landed(player)
+                    else:
+                        repeat = True
+        elif direction == "down":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling Down or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                            break
+                    planet_beta98.beta98_landed(player)
+                else:
+                    repeat = True
+    elif currentPlanet == "example":
+        if direction == "north":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling North or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                    planet_example.example_landed(player)
+                else:
+                    repeat = True
+        elif direction == "south":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling South or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                    planet_example.example_landed(player)
+                else:
+                    repeat = True
+        elif direction == "east":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling East or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                    planet_example.example_landed(player)
+                else:
+                    repeat = True
+        elif direction == "west":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling West or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                    planet_example.example_landed(player)
+                else:
+                    repeat = True
+        elif direction == "up":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling Up or turn around? ")
+                choice = input(">").strip().lower()
+                if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                    slowText("\nTurning around to travel back home.")
+                    while distanceTraveled > 0:
+                        distanceTraveled -= 10
+                        player.fuel -= 10
+                        if player.fuel <= 0:
+                            slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                            endGame()
+                    planet_example.example_landed(player)
+                else:
+                    repeat = True
+        elif direction == "down":
+            repeat = True
+            while repeat:
+                repeat = False
+                distanceTraveled += 10
+                player.fuel -= 10
+                if player.fuel <= 0:
+                    slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                    endGame()
+                if distanceTraveled >= 20:
+                    planet_beta98.beta98_landed(player)
+                else:
+                    slowText("\nYou have used 10% of your fuel but have not found a planet. Would you like to keep traveling Up or turn around? ")
+                    player.fuel -= 10
+                    choice = input(">").strip().lower()
+                    if choice.find("turn") > -1 or choice.find("around") > -1 or choice.find("back") > -1:
+                        slowText("\nTurning around to travel back home.")
+                        while distanceTraveled > 0:
+                            distanceTraveled -= 10
+                            player.fuel -= 10
+                            if player.fuel <= 0:
+                                slowText("\n\nUnfortunately you have ran out of fuel and will die a lonely death in cold space.")
+                                endGame()
+                        planet_example.example_landed(player)
+                    else:
+                        repeat = True
 
 def beginGame():
     slowText("\n\n\nWelcome to the Altaverse, a newly discovered planetary system that has a man-made planet that is within traveling distance to the surrounding unchartered 8 planets.")
@@ -40,6 +313,7 @@ def endGame():
 
 def rollCredits():
     print("This was made by Ryan James, 2018")
+    sys.exit()
 
 def getHealth(player):
     slowText("\nYour health is currently at {}%.".format(player.health))
@@ -57,7 +331,7 @@ def otherWords(player, choice):
     if choice.find("health") > -1:
         getHealth(player)
         return True
-    elif choice.find("fuel") > -1:
+    elif choice.find("fuel") > -1 and not (choice.find("buy fuel") > -1):
         getFuel(player)
         return True
     elif choice.find("money") > -1:
@@ -66,6 +340,8 @@ def otherWords(player, choice):
     elif choice.find("objects") > -1:
         getObjects(player)
         return True
+    elif choice.find("quit")  > -1:
+        sys.exit()
     return False
 
 

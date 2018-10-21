@@ -37,14 +37,29 @@ def beta98_launchPad(player):
         choice = input(">").strip().lower()
         if otherWords(player, choice):
             repeat = True
+        elif choice.find("resupply") > -1 or choice.find("buy fuel") > -1:
+            repeat = True
+            if player.money < (100-player.fuel):
+                amount = player.money
+            else:
+                amount = 100 - player.fuel
+            slowText("\nYou can purchase {} of fuel. How much would you like to purchase? ".format(amount))
+            fuel = input(">")
+            try:
+                player.money -= int(fuel)
+                player.fuel += int(fuel)
+                slowText("\nYou purchased {}% amount of fuel for ${}. Your fuel is now at {}% and you have ${} left.".format(fuel, fuel, player.fuel, player.money))
+            except:
+                slowText("\nSorry but you must type a number in. ")
         elif choice.find("leave") > -1 or choice.find("go away") > -1 or choice.find("go back") > -1:
             slowText("\nLeaving the Launch Pad. ")
-            beta98_landed(player)
+            beta98_main(player)
         elif choice.find("travel") > -1 or choice.find("fly") > -1:
             slowText("\nYou have the option to travel north, south, east, west, up, or down from Planet Beta-98. Which direction would you like to go? ")
             choice = input(">")
-            otherWords(player, choice)
-            if choice.find("north") > -1:
+            if otherWords(player, choice):
+                repeat = True
+            elif choice.find("north") > -1:
                 travel(player, "beta98", "north")
             elif choice.find("south") > -1:
                 travel(player, "beta98", "south")
@@ -88,6 +103,7 @@ def beta98_store(player):
                         player.currentObjects.append("food")
                         player.money -= 5
                         slowText("\nYou just purchased a unit of food.")
+                        repeat = True
                 else:
                     repeat = True
             elif choice.find("blaster") > -1:
@@ -101,6 +117,7 @@ def beta98_store(player):
                         player.currentObjects.append("blaster")
                         player.money -= 100
                         slowText("\nYou just purchased a blaster.")
+                        repeat = True
                 else:
                     repeat = True
             elif choice.find("kit") > -1 or choice.find("emergency") > -1:
@@ -114,6 +131,7 @@ def beta98_store(player):
                         player.currentObjects.append("emergency kit")
                         player.money -= 50
                         slowText("\nYou just purchased an emergency kit.")
+                        repeat = True
                 else:
                     repeat = True
             else:
